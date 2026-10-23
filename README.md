@@ -5,7 +5,7 @@
 >
 > Altri progetti di elettronica, Arduino, ESP32, Home Assistant e stampa 3D su **[www.emgi.it](https://www.emgi.it)**
 
-![Lettore di tag RFID con Arduino, display LCD e case stampato in 3D](immagini/cover-2026-lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-.png)
+![Lettore di tag RFID con Arduino, display LCD e case stampato in 3D](immagini/copertina-3d.jpg)
 
 Un progetto semplice ma completo: un lettore di tag RFID a 13.56 MHz basato su Arduino che mostra l’UID delle tessere su un display LCD, racchiuso in un case progettato su misura e stampato in 3D. È la base perfetta per un controllo accessi, un antifurto fai-da-te o un sistema di timbratura.
 
