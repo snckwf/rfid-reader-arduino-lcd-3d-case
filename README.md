@@ -1,39 +1,39 @@
-# Lettore di tag RFID con Arduino, display LCD e case stampato in 3D
+# RFID tag reader with Arduino, LCD and 3D-printed case
 
-> 📖 **Articolo completo con schema, foto e spiegazioni passo passo:**  
-> **[Lettore di tag RFID con Arduino, display LCD e case stampato in 3D – www.emgi.it](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/)**
+> 📖 **Full article with wiring diagram, photos and step-by-step explanations (in Italian):**  
+> **[RFID tag reader with Arduino, LCD and 3D-printed case – www.emgi.it](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/)**
 >
-> Altri progetti di elettronica, Arduino, ESP32, Home Assistant e stampa 3D su **[www.emgi.it](https://www.emgi.it)**
+> More electronics, Arduino, ESP32, Home Assistant and 3D printing projects at **[www.emgi.it](https://www.emgi.it)**
 
-![Lettore di tag RFID con Arduino, display LCD e case stampato in 3D](immagini/copertina-3d.jpg)
+![RFID tag reader with Arduino, LCD and 3D-printed case](images/cover-3d.jpg)
 
-Un progetto semplice ma completo: un lettore di tag RFID a 13.56 MHz basato su Arduino che mostra l’UID delle tessere su un display LCD, racchiuso in un case progettato su misura e stampato in 3D. È la base perfetta per un controllo accessi, un antifurto fai-da-te o un sistema di timbratura.
+A simple but complete project: a 13.56 MHz RFID tag reader based on Arduino that shows the card UID on an LCD, housed in a custom 3D-printed case. It is the perfect starting point for access control, a DIY alarm system or a time-clock system.
 
-**Modulo RC522 (bus SPI)** — attenzione: il modulo funziona a **3.3V**. Collegarlo a 5V lo danneggia.
+**RC522 module (SPI bus)** — warning: the module runs at **3.3 V**. Connecting it to 5 V damages it.
 
-## Cosa serve
+## What you need
 
-| Componente | Note |
+| Component | Notes |
 |---|---|
-| Arduino UNO o Nano | Qualsiasi scheda ATmega328P |
-| Modulo RFID RC522 | Lettore 13.56 MHz, protocollo MIFARE, interfaccia SPI |
-| Display LCD 16×2 con modulo I2C | Backpack PCF8574, indirizzo tipico 0x27 (o 0x3F) |
-| Tag/tessere MIFARE | Card, portachiavi o adesivi da 13.56 MHz |
-| Cavetti dupont | Femmina-femmina o maschio-femmina a seconda delle schede |
-| Case stampato in 3D | File STL scaricabile in fondo all’articolo |
+| Arduino UNO or Nano | Any ATmega328P board |
+| RC522 RFID module | 13.56 MHz reader, MIFARE protocol, SPI interface |
+| 16×2 LCD with I2C module | PCF8574 backpack, usual address 0x27 (or 0x3F) |
+| MIFARE tags/cards | 13.56 MHz cards, key fobs or stickers |
+| Dupont jumper wires | Female-female or male-female depending on the boards |
+| 3D-printed case | STL file in [`case_3d`](case_3d) |
 
-## Librerie necessarie
+## Required libraries
 
-Dal Library Manager dell’IDE Arduino installare:
+Install from the Arduino IDE Library Manager:
 
-- **MFRC522** (di Miguel Balboa)
-- **LiquidCrystal_I2C** (di Frank de Brabander)
+- **MFRC522** (by Miguel Balboa)
+- **LiquidCrystal_I2C** (by Frank de Brabander)
 
-## Collegamenti elettrici
+## Wiring
 
-Scheda: **Arduino UNO/Nano**. Pin verificati sullo sketch (`SS_PIN 10`, `RST_PIN 9`, LCD I2C `0x27` 16×2).
+Board: **Arduino UNO/Nano**. Pins checked against the sketch (`SS_PIN 10`, `RST_PIN 9`, I2C LCD `0x27` 16×2).
 
-### Modulo RFID RC522 (SPI) — ⚠️ alimentazione a 3,3 V
+### RC522 RFID module (SPI) — ⚠️ 3.3 V power
 
 | RC522 | Arduino |
 |---|---|
@@ -41,51 +41,51 @@ Scheda: **Arduino UNO/Nano**. Pin verificati sullo sketch (`SS_PIN 10`, `RST_PIN
 | SCK | D13 |
 | MOSI | D11 |
 | MISO | D12 |
-| IRQ | non collegato |
+| IRQ | not connected |
 | RST | D9 |
 | 3.3V | **3.3V** |
 | GND | GND |
 
-### Display LCD I2C (5 V)
+### I2C LCD (5 V)
 
-| LCD I2C | Arduino |
+| I2C LCD | Arduino |
 |---|---|
 | VCC | 5V |
 | GND | GND |
 | SDA | A4 |
 | SCL | A5 |
 
-- **Non alimentare l'RC522 a 5 V**: si danneggia. Le linee SPI a 5 V di UNO/Nano in pratica funzionano, ma per un montaggio definitivo è consigliato un adattatore di livello.
-- Se l'LCD resta vuoto, regola il trimmer del contrasto sul retro del modulo I2C o prova l'indirizzo `0x3F`.
-- Su Arduino **Mega** i pin SPI sono diversi: SCK 52, MOSI 51, MISO 50.
+- **Do not power the RC522 from 5 V**: it gets damaged. The 5 V SPI lines of the UNO/Nano work in practice, but a level shifter is recommended for a permanent build.
+- If the LCD stays blank, adjust the contrast trimmer on the back of the I2C module or try address `0x3F`.
+- On an Arduino **Mega** the SPI pins are different: SCK 52, MOSI 51, MISO 50.
 
-## Contenuto del repository
+## Repository contents
 
-| Percorso | Descrizione |
+| Path | Description |
 |---|---|
-| `Lettore_Tag/Lettore_Tag.ino` | Sketch Arduino |
-| `case_3d/lettore_tag.stl` | Modello 3D da stampare |
-| `immagini/` | Foto e immagini dell'articolo |
+| `RFID_Tag_Reader/RFID_Tag_Reader.ino` | Arduino sketch |
+| `case_3d/rfid_reader_case.stl` | 3D model to print |
+| `images/` | Photos and images |
 
-## Come si usa
+## How to use it
 
-1. Installa le librerie **MFRC522** (Miguel Balboa) e **LiquidCrystal_I2C** (Frank de Brabander).
-2. Apri [`Lettore_Tag/Lettore_Tag.ino`](Lettore_Tag/Lettore_Tag.ino) e carica su Arduino.
-3. ⚠️ Il modulo RC522 va alimentato a **3,3 V**: a 5 V si danneggia.
+1. Install the **MFRC522** (Miguel Balboa) and **LiquidCrystal_I2C** (Frank de Brabander) libraries.
+2. Open [`RFID_Tag_Reader/RFID_Tag_Reader.ino`](RFID_Tag_Reader/RFID_Tag_Reader.ino) and upload it to the Arduino.
+3. ⚠️ The RC522 module must be powered from **3.3 V**: 5 V damages it.
 
-Schema dei collegamenti, dettagli e risoluzione dei problemi: **[articolo su www.emgi.it](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/)**.
+Wiring diagram, details and troubleshooting: **[article on www.emgi.it](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/)** (in Italian).
 
-## Immagini
+## Images
 
 <p>
-<img src="immagini/lettore-tag.jpg" width="32%">
+<img src="images/rfid-reader-case-tinkercad.jpg" width="32%">
 </p>
 
-## Licenza
+## License
 
-- Codice e configurazioni: [MIT](LICENSE)
-- Modelli 3D, schemi e immagini: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it)
+- Code and configuration: [MIT](LICENSE)
+- 3D models, diagrams and images: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ---
 
-**Autore:** Massimiliano Sandrin – **[eMGi.it](https://www.emgi.it)** · Domande e commenti sotto l'[articolo sul sito](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/).
+**Author:** Massimiliano Sandrin – **[eMGi.it](https://www.emgi.it)** · Questions and comments below the [article on the website](https://www.emgi.it/2026/07/20/lettore-di-tag-rfid-con-arduino-display-lcd-e-case-stampato-in-3d/).
